@@ -1,10 +1,9 @@
-from crypt import methods
 from flask import Flask, request
 import json
 
 app = Flask(__name__)
 
-@app.route('/api/fetchMenu')
+@app.route('/api/v1/menu')
 def fetchMenu():
     with open('./Data/menu.json', 'r') as menuFile:
         data = menuFile.read()
@@ -13,7 +12,7 @@ def fetchMenu():
     return menu
 
 
-@app.route('/api/orderFood', methods=['POST'])
+@app.route('/api/v1/bulk/order', methods=['POST'])
 def orderFood():
     data = request.get_json()
 
