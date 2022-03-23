@@ -1,6 +1,6 @@
 import json
 class Employee:
-    def __init__(self, name, address, IsAttending, orderQty, order) -> None:
+    def __init__(self, name, address, IsAttending, orderQty, order):
         self.name = name
         self.address = address
         self.IsAttending = IsAttending
@@ -17,8 +17,8 @@ class Employee:
             }]
         }.items()
 
-    def __str__(self) -> str:
+    def __str__(self):
         return json.dumps(dict(self), ensure_ascii=False)
     
-    def __repr__(self) -> str:
+    def __repr__(self):
         return self.__str__()
