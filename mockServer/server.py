@@ -18,5 +18,4 @@ def orderFood():
     resultFileName = './Data/results/' + datetime.now().strftime("Result_%d-%m-%Y%H-%M-%S")
     with open(resultFileName, 'wb') as resultFile:
         resultFile.write(data)
-        # json.dump(data, resultFile, ensure_ascii=False, indent=4)
     return resultFileName
