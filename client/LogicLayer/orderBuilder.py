@@ -9,20 +9,28 @@ def buildOrder(empData):
     orders = []
     for emp in empData:
         order = {}
+        customer = {}
         for child in emp:
-            if(child.tag == 'Address'):
-                order[child.tag] = getAdress(child)
+            if(child.tag == 'Name'):
+                customer['name'] = child.text
+            elif(child.tag == 'Address'):
+                customer['address'] = getAdress(child)
             elif(child.tag == 'Order'):
-                order['items'] = getOrder(child.text.split(','))
-            else:
-                order[child.tag] = child.text
+                items = getOrder(child.text.split(','))
+        order['customer'] = customer
+        order['items'] = items
         orders.append(order)
     return json.dumps(orders)
         
 def getAdress(address):
     ad = {}
     for addr in address:
-        ad[addr.tag] = addr.text
+        if(addr.tag == 'Street'):
+            ad['street'] = addr.text
+        elif(addr.tag == 'City'):
+            ad['city'] = addr.text
+        elif(addr.tag == 'PostalCode'):
+            ad['postal_code'] = addr.text
     return ad
 
 def getOrder(order):
