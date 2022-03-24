@@ -1,13 +1,12 @@
 from tkinter import messagebox
 import xml.etree.ElementTree as ET
-import sys
+import sys, json
 
 from LogicLayer.service import fetchMenu
 
 
 def buildOrder(empData):
     orders = []
-
     for emp in empData:
         order = {}
         for child in emp:
@@ -18,7 +17,7 @@ def buildOrder(empData):
             else:
                 order[child.tag] = child.text
         orders.append(order)
-    return orders
+    return json.dumps(orders)
         
 def getAdress(address):
     ad = {}
@@ -27,7 +26,6 @@ def getAdress(address):
     return ad
 
 def getOrder(order):
-
     menu =  fetchMenu()
     if(menu != "Error"):
         orders = []

@@ -5,6 +5,8 @@ import xml.etree.ElementTree as ET
 from LogicLayer.orderBuilder import buildOrder
 import sys
 
+from LogicLayer.service import bulkOrder
+
 Tk().withdraw()
 filename = askopenfilename(filetypes=[
     ('XML Files', '*.xml')
@@ -18,8 +20,9 @@ if(filename):
 
         orders = buildOrder(root.iter('Employee'))
 
-        print(orders)
-                
+        resultFileName = bulkOrder(orders)
+        print(resultFileName)
+        messagebox.showinfo(title = 'Info', message='Order Placed Succesfully, result file placed at ' + resultFileName)
     except:
         messagebox.showerror(title = 'Error', message='Some error occured, Please Try again.')
         sys.exit()

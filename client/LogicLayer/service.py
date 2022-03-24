@@ -20,13 +20,10 @@ def fetchMenu():
         return "Error"
     
     if(response.status_code == 200):
-        menu = json.loads(response.text)        
+        menu = json.loads(response.text) 
         return menu['dishes']
     else:
         return "Error"
-
-fetchMenu()
-
 def bulkOrder(orderData):
     try:
         response = requests.request("POST",
@@ -37,5 +34,6 @@ def bulkOrder(orderData):
 
     if(response.status_code == 200):
         ordersFile = response.text
+        return ordersFile
     else:
         return "Error" 
